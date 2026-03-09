@@ -1,2 +1,18 @@
+
 // reset.js
-module.exports = { run: [{ method: "fs.rm", params: { path: "app" } }] }
+module.exports = {
+  run: [
+    {
+      method: "fs.rm",
+      params: {
+        path: "env"
+      }
+    },
+    {
+      method: "fs.rm",
+      params: {
+        path: "cache"
+      }
+    }
+  ]
+}
