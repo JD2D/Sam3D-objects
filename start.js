@@ -12,7 +12,7 @@ module.exports = {
                 venv: "env",
                 env: {},
                 path: "app",
-                message: "python app.py",  // Assumes you add app.py to app/ folder; otherwise, change to "jupyter notebook notebook/demo_single_object.ipynb" for manual use
+                message: "python app.py --port {{port}}",  // Assumes you add app.py to app/ folder; otherwise, change to "jupyter notebook notebook/demo_single_object.ipynb" for manual use
                 on: [{
                     "event": "/http:\/\/\\S+/",
                     "done": true

@@ -1,4 +1,4 @@
-// torch.js (unchanged, as it's platform-specific torch install)
+// torch.js
 module.exports = {
     run: [
         // windows nvidia
@@ -9,8 +9,8 @@ module.exports = {
                 "venv": "{{args && args.venv ? args.venv : null}}",
                 "path": "{{args && args.path ? args.path : '.'}}",
                 "message": [
-                    "uv pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 {{args && args.xformers ? 'xformers==0.0.30' : ''}} --index-url https://download.pytorch.org/whl/cu128 --force-reinstall --no-deps",
-                    "{{args && args.triton ? 'uv pip install triton-windows==3.3.1.post19' : ''}}"
+                    "uv pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 {{args && args.xformers ? 'xformers==0.0.28.post3' : ''}} --index-url https://download.pytorch.org/whl/cu121 --force-reinstall --no-deps",
+                    "{{args && args.triton ? 'uv pip install triton-windows' : ''}}"
                 ]
             },
             "next": null
@@ -33,7 +33,7 @@ module.exports = {
             "params": {
                 "venv": "{{args && args.venv ? args.venv : null}}",
                 "path": "{{args && args.path ? args.path : '.'}}",
-                "message": "uv pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 numpy==1.26.4 --force-reinstall --no-deps"
+                "message": "uv pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 numpy==1.26.4 --force-reinstall --no-deps"
             },
             "next": null
         },
@@ -44,19 +44,9 @@ module.exports = {
             "params": {
                 "venv": "{{args && args.venv ? args.venv : null}}",
                 "path": "{{args && args.path ? args.path : '.'}}",
-                "message": "uv pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cpu --force-reinstall --no-deps"
+                "message": "uv pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cpu --force-reinstall --no-deps"
             },
             "next": null
-        },
-        // intel mac
-        {
-            "when": "{{platform === 'darwin' && arch !== 'arm64'}}",
-            "method": "shell.run",
-            "params": {
-                "venv": "{{args && args.venv ? args.venv : null}}",
-                "path": "{{args && args.path ? args.path : '.'}}",
-                "message": "uv pip install torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 --index-url https://download.pytorch.org/whl/cpu --force-reinstall --no-deps"
-            }
         },
         // linux nvidia
         {
@@ -66,7 +56,7 @@ module.exports = {
                 "venv": "{{args && args.venv ? args.venv : null}}",
                 "path": "{{args && args.path ? args.path : '.'}}",
                 "message": [
-                    "uv pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 {{args && args.xformers ? 'xformers==0.0.30' : ''}} --index-url https://download.pytorch.org/whl/cu128 --force-reinstall --no-deps",
+                    "uv pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 {{args && args.xformers ? 'xformers==0.0.28.post3' : ''}} --index-url https://download.pytorch.org/whl/cu121 --force-reinstall --no-deps",
                     "{{args && args.triton ? 'uv pip install triton' : ''}}"
                 ]
             },
@@ -79,7 +69,7 @@ module.exports = {
             "params": {
                 "venv": "{{args && args.venv ? args.venv : null}}",
                 "path": "{{args && args.path ? args.path : '.'}}",
-                "message": "uv pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/rocm6.3 --force-reinstall --no-deps"
+                "message": "uv pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/rocm6.0 --force-reinstall --no-deps"
             },
             "next": null
         },
@@ -90,7 +80,7 @@ module.exports = {
             "params": {
                 "venv": "{{args && args.venv ? args.venv : null}}",
                 "path": "{{args && args.path ? args.path : '.'}}",
-                "message": "uv pip install torch==2.7.0 torchvision==0.22.0 torchaudio==2.7.0 --index-url https://download.pytorch.org/whl/cpu --force-reinstall --no-deps"
+                "message": "uv pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1 --index-url https://download.pytorch.org/whl/cpu --force-reinstall --no-deps"
             },
             "next": null
         }

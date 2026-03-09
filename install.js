@@ -16,7 +16,7 @@ module.exports = {
         {
             method: "shell.run",
             params: {
-                message: "conda create -n env python=3.10 -y"  // Simple Windows-friendly env, no Linux yml
+                message: "conda create -p env python=3.10 -y"
             }
         },
         {
@@ -24,22 +24,7 @@ module.exports = {
             params: {
                 venv: "env",
                 path: "app",
-                env: { "PIP_EXTRA_INDEX_URL": "https://pypi.ngc.nvidia.com https://download.pytorch.org/whl/cu121" },
-                message: [
-                    "python -m pip install --upgrade pip",
-                    "pip install -e .",
-                    "pip install -r requirements.dev.txt",
-                    "pip install -r requirements.p3d.txt"
-                ]
-            }
-        },
-        {
-            method: "shell.run",
-            params: {
-                venv: "env",
-                path: "app",
-                env: { "PIP_FIND_LINKS": "https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.5.1_cu121.html" },
-                message: "pip install -r requirements.inference.txt"
+                message: "uv pip install --upgrade pip"
             }
         },
         {
@@ -49,7 +34,26 @@ module.exports = {
                 params: {
                     venv: "env",
                     path: "app",
+                    xformers: true
                 }
+            }
+        },
+        {
+            method: "shell.run",
+            params: {
+                venv: "env",
+                path: "app",
+                build: true,
+                env: { 
+                  "PIP_EXTRA_INDEX_URL": "https://pypi.ngc.nvidia.com https://download.pytorch.org/whl/cu121",
+                  "PIP_FIND_LINKS": "https://nvidia-kaolin.s3.us-east-2.amazonaws.com/torch-2.5.1_cu121.html"
+                },
+                message: [
+                    "uv pip install -e .",
+                    "uv pip install -r requirements.dev.txt",
+                    "uv pip install -r requirements.inference.txt",
+                    "uv pip install -r requirements.p3d.txt"
+                ]
             }
         },
         {
